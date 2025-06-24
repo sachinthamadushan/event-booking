@@ -1,4 +1,4 @@
-const Regidtration = require('../model/Registration');
+const Registration = require('../model/Registration');
 const Event = require('../model/Event');
 
 const createRegistration = async (req, res) => {
@@ -12,7 +12,7 @@ const createRegistration = async (req, res) => {
             });
         }
 
-        let registration = new Regidtration({
+        let registration = new Registration({
             user_name: req.body.user_name,
             event_id: req.body.event_id
         });
@@ -33,4 +33,13 @@ const createRegistration = async (req, res) => {
     }
 }
 
-module.exports = {createRegistration}
+const getAllRegistrations = async (req,res) => {
+    try {
+       const registration = await Registration.find().populate('event_id')
+       res.status(200).json(registration);
+    } catch (error) {
+       res.status(200).json({error:error.message}); 
+    }
+}
+
+module.exports = {createRegistration,getAllRegistrations}

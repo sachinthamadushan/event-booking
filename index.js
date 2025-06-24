@@ -18,5 +18,5 @@ app.listen(process.env.PORT,
     () => console.log(`Server started on port ${process.env.PORT}`));
 
 app.use('/api/events', eventRoutes);
-app.use('/api/registrations/', rs);
+app.use('/api/registrations', rs);
 app.use('/api/users', userRoutes);
