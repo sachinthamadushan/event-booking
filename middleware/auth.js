@@ -3,6 +3,9 @@ const jwt = require('jsonwebtoken');
 const auth = async (req, res, next) => {
     try {
       const authHeader = req.headers.authorization;
+      console.log(authHeader);
+      console.log("Token in storage:", localStorage.getItem('token'));
+      
       if(!authHeader) return res.status(401)
         .json({ error: 'No token provided' });
     const token = authHeader;
